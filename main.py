@@ -11,6 +11,17 @@ api_key = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI(api_key=api_key)
 
+def create_csv_file(data):
+    # Split the returned data into separate rows and adjust each row to have five fields
+    rows = [row.split(" | ")[:5] for row in data]
+
+    # Convert rows into a pandas DataFrame
+    df = pd.DataFrame(rows, columns=["Word", "Hiragana", "Example Sentence 1", "Example Sentence 2", "English Translation"])
+
+    # Save DataFrame to a CSV file
+    df.to_csv("Japanese_Word_Examples.csv", index=False)
+    print("CSV file created successfully!")
+
 def generate_explanations(words):
     # Construct the prompt dynamically based on the number of words
     prompt = "Generate explanations and example sentences in Japanese for the following words in the format specified:\n"
@@ -62,8 +73,8 @@ def main():
 
     print(data) # Print the data to the console
 
-    # Create Excel spreadsheet
-    create_excel_sheet(data)
+    # Create CSV file
+    create_csv_file(data)
 
 if __name__ == "__main__":
     main()
