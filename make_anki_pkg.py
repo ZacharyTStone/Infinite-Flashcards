@@ -1,4 +1,5 @@
 import csv
+import os
 import genanki
 
 def import_to_anki(csv_file_path, deck_name):
@@ -68,12 +69,16 @@ def import_to_anki(csv_file_path, deck_name):
     # Create Anki package
     package = genanki.Package(deck)
     package.write_to_file(f'{deck_name}.apkg')
+
+    # move the apkg file to the correct directory ./files
+    os.rename(f'{deck_name}.apkg', f'./files/{deck_name}.apkg')
+
     print(f'Anki package "{deck_name}.apkg" created successfully.')
 
 # Replace 'Japanese_Word_Examples.csv' with the path to your CSV file
-csv_file_path = 'Japanese_Word_Examples.csv'
+csv_file_path = './files/Japanese_Word_Examples.csv'
 
 # Replace 'Japanese Words' with the desired name for your Anki deck
-deck_name = 'Japanese AI Vocab Deck'
+deck_name = 'Japanese_AI_Vocab_Deck'
 
 import_to_anki(csv_file_path, deck_name)
