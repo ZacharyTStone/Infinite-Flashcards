@@ -4,4 +4,4 @@ The cards have hiragana, example sentences, and an English definition.
 
 ### How to run
 
-<coming soon>
+...coming soon
