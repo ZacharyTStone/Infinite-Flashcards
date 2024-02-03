@@ -23,23 +23,21 @@ def import_to_anki(csv_file_path, deck_name):
                           {{Example Sentence 1}}
                         </h1>
                         <hr>
-                        <h5>
+                        <h3>
                             <i>{{Word}}</i>
-                        </h5>
+                        </h3>
                     </div>
                 ''',
                 'afmt': '''
                     <div id="header">
-                        <p>
+                        <h1>
                             <i>{{Word}} | {{Hiragana}}</i>
-                        </p>
+                        </h1>
                         <hr>
-                              <p>{{English Translation}}</p>
+                        <h3>1.{{Example Sentence 1}}</h3>
+                        <h3>2.{{Example Sentence 2}}</h3>
                         <hr>
-                        <p>1.{{Example Sentence 1}}</p>
-                        <p>2.{{Example Sentence 2}}</p>
-                        <hr>
-                        <p>{{English Translation}}</p>
+                        <h3>{{English Translation}}</h3>
                     </div>
                 '''
             }
