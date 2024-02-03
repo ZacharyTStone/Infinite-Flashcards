@@ -1,6 +1,6 @@
 # OpenAI Anki Card Generator
 
-This project is a Python script that generates Anki cards from a word list using OpenAI. The generated cards include hiragana, example sentences, and basic Japanese definitions.
+This project is a Python script that generates Anki cards from a word list or essay using OpenAI. The generated cards include hiragana, example sentences, and basic Japanese definitions.
 
 ## Features
 
