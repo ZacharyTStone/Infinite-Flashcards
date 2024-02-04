@@ -23,9 +23,9 @@ def import_to_anki(csv_file_path, deck_name):
                           {{Example Sentence 1}}
                         </h1>
                         <hr>
-                        <h3>
+                        <h1>
                             <i>{{Word}}</i>
-                        </h3>
+                        </h1>
                     </div>
                 ''',
                 'afmt': '''
@@ -34,10 +34,10 @@ def import_to_anki(csv_file_path, deck_name):
                             <i>{{Word}} | {{Hiragana}}</i>
                         </h1>
                         <hr>
-                        <h3>1.{{Example Sentence 1}}</h3>
-                        <h3>2.{{Example Sentence 2}}</h3>
+                        <h2>1.{{Example Sentence 1}}</h2>
+                        <h2>2.{{Example Sentence 2}}</h2>
                         <hr>
-                        <h3>{{English Translation}}</h3>
+                        <h2>{{English Translation}}</h2>
                     </div>
                 '''
             }

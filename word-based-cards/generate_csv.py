@@ -77,6 +77,10 @@ def main():
     # Create CSV file
     create_csv_file(data)
 
+    # check if the directory exists
+    if not os.path.exists("./files"):
+        os.makedirs("./files")
+
     # move the csv file to the correct directory ./files
     os.rename("Japanese_Word_Examples.csv", "./files/Japanese_Word_Examples.csv")
 
