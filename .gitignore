@@ -10,3 +10,11 @@ files
 
 ./word-based-cards/files
 ./essay-based-cards/files
+
+words
+sentences
+essay
+
+./word-based-cards/words
+./sentence-based-cards/sentences
+./essay-based-cards/essay

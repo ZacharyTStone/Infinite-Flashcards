@@ -30,8 +30,9 @@ This project is a Python script that generates Anki cards from a word list or es
 
 ## Usage
 
-- To generate word-based cards, add the words to the words.txt in the word-based-cards folder and then run `word-based-cards/main.py`.
-- To generate essay-based cards, add the essay to the essay.txt in the essay-based-cards folder and then run `essay-based-cards/main.py`.
+- To generate word-based cards, add the words to a new file called words.txt in the word-based-cards folder and then run `word-based-cards/main.py`.
+- To generate essay-based cards, add the essay a new file called essay.txt in the essay-based-cards folder and then run `essay-based-cards/main.py`.
+- To generate sentance-based cards, add the sentences to a new file called sentences.txt in the sentence-based-cards folder and then run `sentence-based-cards/main.py`.
 
 ## Project Structure
 
