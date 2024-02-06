@@ -14,34 +14,33 @@ def import_to_anki(csv_file_path, deck_name):
             {'name': 'Example Sentence 2'},
             {'name': 'English Translation'}
         ],
-        templates=[
-            {
-                'name': 'Card 1',
-                'qfmt': '''
-                    <div id="header">
-                        <h1>
-                          {{Example Sentence 1}}
-                        </h1>
-                        <hr>
-                        <h1>
-                            <i>{{Word}}</i>
-                        </h1>
-                    </div>
-                ''',
-                'afmt': '''
-                    <div id="header">
-                        <h1>
-                            <i>{{Word}} | {{Hiragana}}</i>
-                        </h1>
-                        <hr>
-                        <h2>1.{{Example Sentence 1}}</h2>
-                        <h2>2.{{Example Sentence 2}}</h2>
-                        <hr>
-                        <h2>{{English Translation}}</h2>
-                    </div>
-                '''
-            }
-        ]
+    templates=[
+    {
+        'name': 'Card 1',
+        'qfmt': '''
+            <div class="card">
+                <div id="header">
+                    <h1>{{Example Sentence 1}}</h1>
+                    <hr>
+                    <h1><i>{{Word}}</i></h1>
+                </div>
+            </div>
+        ''',
+        'afmt': '''
+            <div class="card">
+                <div id="header">
+                    <h1><i>{{Word}} | {{Hiragana}}</i></h1>
+                    <hr>
+                    <h2>1.{{Example Sentence 1}}</h2>
+                    <h2>2.{{Example Sentence 2}}</h2>
+                    <hr>
+                    <h2>{{English Translation}}</h2>
+                </div>
+            </div>
+        '''
+    }
+]
+
     )
 
 

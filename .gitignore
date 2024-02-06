@@ -15,6 +15,7 @@ words
 sentences
 essay
 
-./word-based-cards/words
-./sentence-based-cards/sentences
-./essay-based-cards/essay
+
+./word-based-cards/words.txt
+./sentence-based-cards/sentences.txt
+./essay-based-cards/essay.txt
