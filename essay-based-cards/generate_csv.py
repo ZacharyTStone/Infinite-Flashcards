@@ -25,7 +25,7 @@ def create_csv_file(data):
 def generate_explanations(essay):
     # Construct the prompt dynamically based on the number of essay
 
-    prompt = "analyze the words in the following essay. Please find the 10 most difficult Japanese words. If you are unsure of difficulty please check if they are in the JLPT N1 level. Then give output about the words in the format below\n"
+    prompt = "analyze the words in the following essay. Please find the 5-10 most difficult Japanese words. If you are unsure of difficulty please check if they are in the JLPT N1 or N2 level. Then give output about the words in the format below\n"
 
     prompt += "\n Format the output of the picked words as follows:\n<word>  | <word in hiragana> | <full sentance in essay> | <example sentence using the word> | <dictionary defintion of the word in Japanese>\n\nWarning: Ensure that the output strictly adheres to the specified format. Any deviation from the format will not be acceptable. each word should have the 5 fields separated by a pipe (|) symbol. Each word should be on a new line. the first field should be the word, the second the word in hiragna, the third is the word used in the essay sentance, the fourth should be a Japanese example sentance using the word, the fifth and last section should be a direct Japanse translation of the word. You must put something for each section. if you can not find anything put N/A"
 
