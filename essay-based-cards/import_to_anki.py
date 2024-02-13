@@ -22,6 +22,9 @@ def import_deck(deck_path):
     # Check if the request was successful
     if response.status_code == 200:
         print("Deck imported successfully.")
+
+        # delete files folder with the deck package and csv file
+        os.remove(absolute_deck_path)
         print(response.json())
     else:
         print("Failed to import deck.")
