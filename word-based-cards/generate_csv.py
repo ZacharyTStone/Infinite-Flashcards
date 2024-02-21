@@ -28,14 +28,14 @@ def generate_explanations(words):
     for i, word in enumerate(words, start=1):
         prompt += f"{i}. {word}\n"
 
-    prompt += "\n Format the output as follows:\n<word>  | <word in hiragana> | <example sentence 1> | <example sentence 2> | <dictionary definition in Japanese>\n\nWarning: Ensure that the output strictly adheres to the specified format. Any deviation from the format will not be acceptable. each word should have the 5 fields separated by a pipe (|) symbol. Each word should be on a new line. the first field should be the word, the second the word in hiragna, the third a Japanese example sentance using the word, the fourth should be a Japanese example sentance using the word, the fifth and last section should be a direct Japanese definition of the word. You must put something for each section. if you can not find anything put N/A"
+    prompt += "\n Format the output as follows:\n<word>  | <word in hiragana> | <example sentence 1> | <example sentence 2> | <dictionary definition in Japanese>\n\nWarning: Ensure that the output strictly adheres to the specified format. Any deviation from the format will not be acceptable. each word should have the 5 fields separated by a pipe (|) symbol. Each word should be on a new line. the first field should be the word, the second the word in hiragna, the third a Japanese example sentance using the word, the fourth should be a Japanese example sentance using the word, the fifth and last section should be a direct Japanese definition of the word. You must put something for each section. if you can not find anything put N/A and a pipe to start the next field"
 
     prompt += "\n Example: 食べ物  | たべもの | 食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食物をかんで、のみこむ。\n\n"
     # Send prompt to OpenAI API
     response = client.completions.create(
         model="gpt-3.5-turbo-instruct",
         prompt=prompt,
-        max_tokens=500,
+        max_tokens=700,
     )
 
     # Split the response text by newline and filter out any empty lines
