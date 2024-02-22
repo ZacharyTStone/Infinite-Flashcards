@@ -26,6 +26,19 @@ def import_deck(deck_path):
 
         # delete files folder with the deck package and csv file
         os.remove(absolute_deck_path)
+
+        # delete the words.txt file at the same level as this script
+        if os.path.exists("words.txt"):
+            os.remove("words.txt")
+        else:
+            print("The file does not exist")
+
+
+
+        # make a new words.txt file
+        with open("words.txt", "w") as file:
+            file.write("")
+      
     else:
         print("Failed to import deck.")
 

@@ -35,7 +35,7 @@ def generate_explanations(words):
     response = client.completions.create(
         model="gpt-3.5-turbo-instruct",
         prompt=prompt,
-        max_tokens=700,
+        max_tokens=1000,
     )
 
     # Split the response text by newline and filter out any empty lines
