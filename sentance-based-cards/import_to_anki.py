@@ -26,6 +26,20 @@ def import_deck(deck_path):
         # delete files folder with the deck package and csv file
         os.remove(absolute_deck_path)
         print(response.json())
+
+        # delete the txt file at the same level as this script
+        if os.path.exists("sentances.txt"):
+            os.remove("sentances.txt")
+        else:
+            print("The file does not exist")
+
+
+
+        # make a new txt file
+        with open("sentances.txt", "w") as file:
+            file.write("")
+
+
     else:
         print("Failed to import deck.")
         
