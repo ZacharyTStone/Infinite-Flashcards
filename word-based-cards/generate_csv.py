@@ -35,7 +35,7 @@ def generate_explanations(words):
     response = client.completions.create(
         model="gpt-3.5-turbo-instruct",
         prompt=prompt,
-        max_tokens=1000,
+        max_tokens=3500,
     )
 
     # Split the response text by newline and filter out any empty lines
@@ -69,6 +69,11 @@ def main():
     with open("words.txt", "r", encoding="utf-8") as file:
         words = [word.strip() for word in file.readlines()]
 
+    # if there are more than 10 words, raise an exception and print a warning message
+    if len(words) > 10:
+        print("Warning: The number of words is more than 10. Please enter 10 or fewer words.")
+        raise ValueError("Number of words exceeds 10. Exiting...")
+
     # Generate explanations for the words
     data = generate_explanations(words)
 
@@ -88,4 +93,7 @@ def main():
     # create_excel_sheet(data)
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except ValueError:
+        pass  # Do nothing and exit gracefully
