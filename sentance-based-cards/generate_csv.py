@@ -38,7 +38,7 @@ def generate_explanations(sentances):
     response = client.completions.create(
         model="gpt-3.5-turbo-instruct",
         prompt=prompt,
-        max_tokens=1000,
+             max_tokens=3500,
     )
 
     # Split the response text by newline and filter out any empty lines
@@ -68,12 +68,17 @@ def generate_explanations(sentances):
 #     print("Excel spreadsheet created successfully!")
 
 def main():
-    # Read words from text file
-    with open("sentances.txt", "r", encoding="utf-8") as file:
-        words = [word.strip() for word in file.readlines()]
+    # Read sentences from text file
+    with open("sentences.txt", "r", encoding="utf-8") as file:
+        sentences = [sentence.strip() for sentence in file.readlines()]
 
-    # Generate explanations for the words
-    data = generate_explanations(words)
+    # if there are more than 10 sentences, raise an exception and print a warning message
+    if len(sentences) > 10:
+        print("Warning: More than 10 sentences provided. The program will now exit.")
+        raise ValueError("More than 10 sentences provided. Exiting...")
+
+    # Generate explanations for the sentences
+    data = generate_explanations(sentences)
 
     print(data) # Print the data to the console
 
@@ -85,10 +90,11 @@ def main():
         os.makedirs("./files")
 
     # move the csv file to the correct directory ./files
-    os.rename("Japanese_Sentance_Examples.csv", "./files/Japanese_Sentance_Examples.csv")
-
-    # Create Excel spreadsheet
-    # create_excel_sheet(data)
+    os.rename("Japanese_Sentence_Examples.csv", "./files/Japanese_Sentence_Examples.csv")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except ValueError:
+        pass  # Do nothing and exit gracefully
+
