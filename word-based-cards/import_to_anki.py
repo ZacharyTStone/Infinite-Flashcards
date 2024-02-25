@@ -28,15 +28,15 @@ def import_deck(deck_path):
         os.remove(absolute_deck_path)
 
         # delete the words.txt file at the same level as this script
-        if os.path.exists("words.txt"):
+        if os.path.exists("../words.txt"):
             os.remove("words.txt")
         else:
-            print("The file does not exist")
+              print("The file does not exist. Please clear you text file manually before running the script again.")
 
 
 
         # make a new words.txt file
-        with open("words.txt", "w") as file:
+        with open("../words.txt", "w") as file:
             file.write("")
       
     else:

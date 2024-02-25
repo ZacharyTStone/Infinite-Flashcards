@@ -69,7 +69,7 @@ def generate_explanations(sentances):
 
 def main():
     # Read sentences from text file
-    with open("sentences.txt", "r", encoding="utf-8") as file:
+    with open("../sentences.txt", "r", encoding="utf-8") as file:
         sentences = [sentence.strip() for sentence in file.readlines()]
 
     # if there are more than 10 sentences, raise an exception and print a warning message

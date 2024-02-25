@@ -28,15 +28,15 @@ def import_deck(deck_path):
         print(response.json())
 
         # delete the txt file at the same level as this script
-        if os.path.exists("sentances.txt"):
+        if os.path.exists("../sentances.txt"):
             os.remove("sentances.txt")
         else:
-            print("The file does not exist")
+             print("The file does not exist. Please clear you text file manually before running the script again.")
 
 
 
         # make a new txt file
-        with open("sentances.txt", "w") as file:
+        with open("../sentances.txt", "w") as file:
             file.write("")
 
 

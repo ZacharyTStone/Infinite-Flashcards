@@ -72,7 +72,7 @@ def generate_explanations(essay):
 
 def main():
     # Read Essay from text file
-    with open("essay.txt", "r", encoding="utf-8") as file:
+    with open("../essay.txt", "r", encoding="utf-8") as file:
         essay = file.read()
 
     # Generate explanations for the essay
