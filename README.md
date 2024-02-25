@@ -47,29 +47,30 @@ This project is a Python script that generates Anki cards from a word list or es
 
 2. follow the prompts. The script will generate the cards using the Open AI key and the app will create the csv files and import them into Anki automatically.
 
-## structure
+## Structure
 
-├── .env
-├── .gitignore
-├── README.md
-├── requirements.txt
-├── create_text_files.py
-├── main.py
-├── essay-based-cards
-│ ├── generate_csv.py
-│ ├── make_anki_pkg.py
-│ ├── import_to_anki.py
-│ └── main.py
-├── sentence-based-cards
-│ ├── generate_csv.py
-│ ├── make_anki_pkg.py
-│ ├── import_to_anki.py
-│ └── main.py
-└── word-based-cards
-├── generate_csv.py
-├── make_anki_pkg.py
-├── import_to_anki.py
-└── main.py
+- .env
+- .gitignore
+- README.md
+- requirements.txt
+- create_text_files.py
+- main.py
+- essay-based-cards
+  - generate_csv.py
+  - make_anki_pkg.py
+  - import_to_anki.py
+  - main.py
+- sentence-based-cards
+  - generate_csv.py
+  - make_anki_pkg.py
+  - import_to_anki.py
+  - main.py
+- word-based-cards
+  - generate_csv.py
+  - make_anki_pkg.py
+  - import_to_anki.py
+  - main.py
+
 
 ## Notes
 
