@@ -1,5 +1,10 @@
 import requests
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 
 def import_deck(deck_path):
     # AnkiConnect endpoint URL to import the deck
