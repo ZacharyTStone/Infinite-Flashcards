@@ -57,18 +57,7 @@ def generate_explanations(essay):
     
     return data
 
-# use csv instead of excel for anki. If you want to use excel, you can use the following code
 
-# def create_excel_sheet(data):
-#     # Split the returned data into separate rows and adjust each row to have five fields
-#     rows = [row.split(" | ")[:5] for row in data]
-
-#     # Convert rows into a pandas DataFrame
-#     df = pd.DataFrame(rows, columns=["Word", "Hiragana", "Example Sentence 1", "Example Sentence 2", "English Translation"])
-
-#     # Save DataFrame to an Excel spreadsheet
-#     df.to_excel("Japanese_Word_Examples.xlsx", index=False)
-#     print("Excel spreadsheet created successfully!")
 
 def main():
     # Read Essay from text file
@@ -91,8 +80,6 @@ def main():
 
     os.rename("Japanese_Word_Examples.csv", "./files/Japanese_Word_Examples.csv")
 
-    # Create Excel spreadsheet
-    # create_excel_sheet(data)
 
 if __name__ == "__main__":
     main()

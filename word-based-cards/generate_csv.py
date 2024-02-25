@@ -11,7 +11,11 @@ api_key = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI(api_key=api_key)
 
-def create_csv_file(data):
+def check_word_count(words, limit=10):
+    if len(words) > limit:
+        raise ValueError(f"The number of words exceeds {limit}. Please enter {limit} or fewer words.")
+
+def write_to_csv(data, filename="Japanese_Word_Examples.csv"):
     # Split the returned data into separate rows and adjust each row to have five fields
     rows = [row.split(" | ")[:5] for row in data]
 
@@ -19,7 +23,7 @@ def create_csv_file(data):
     df = pd.DataFrame(rows, columns=["Word", "Hiragana", "Example Sentence 1", "Example Sentence 2", "English Translation"])
 
     # Save DataFrame to a CSV file
-    df.to_csv("Japanese_Word_Examples.csv", index=False)
+    df.to_csv(filename, index=False)
     print("CSV file created successfully!")
 
 def generate_explanations(words):
@@ -57,10 +61,8 @@ def main():
     with open("../words.txt", "r", encoding="utf-8") as file:
         words = [word.strip() for word in file.readlines()]
 
-    # if there are more than 10 words, raise an exception and print a warning message
-    if len(words) > 10:
-        print("Warning: The number of words is more than 10. Please enter 10 or fewer words.")
-        raise ValueError("Number of words exceeds 10. Exiting...")
+    # Check if the number of words exceeds the limit
+    check_word_count(words)
 
     # Generate explanations for the words
     data = generate_explanations(words)
@@ -68,7 +70,7 @@ def main():
     print(data) # Print the data to the console
 
     # Create CSV file
-    create_csv_file(data)
+    write_to_csv(data)
 
     # check if the directory exists
     if not os.path.exists("./files"):
