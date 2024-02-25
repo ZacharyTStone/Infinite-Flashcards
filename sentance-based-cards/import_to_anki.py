@@ -29,7 +29,7 @@ def import_deck(deck_path):
 
         # delete the txt file at the same level as this script
         if os.path.exists("../sentances.txt"):
-            os.remove("sentances.txt")
+            os.remove("../sentances.txt")
         else:
              print("The file does not exist. Please clear you text file manually before running the script again.")
 
