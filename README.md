@@ -31,6 +31,9 @@ This project is a Python script that generates Anki cards from a word list or es
 
    - [AnkiConnect](https://ankiweb.net/shared/info/2055492159)
    - set ANKI_CONNECT_URL in .env to the local address of AnkiConnect
+   ```
+    ANKI_CONNECT_URL=your AnkiConnect local host address
+   ```
 
 4. run create_text_files.py to create the necessary text files for the card generations
    ```bash
