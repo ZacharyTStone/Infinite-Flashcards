@@ -27,8 +27,7 @@ This project is a Python script that generates Anki cards from a word list or es
    ```
    OPENAI_API_KEY=your_api_key_here
    ```
-3. Install AnkiConnect (if automatically importing into Anki):
-
+3. Set your  AnkiConnect key in the `.env` file (if automatically importing into Anki):
    - [AnkiConnect](https://ankiweb.net/shared/info/2055492159)
    - set ANKI_CONNECT_URL in .env to the local address of AnkiConnect
    ```
@@ -48,7 +47,7 @@ This project is a Python script that generates Anki cards from a word list or es
    python main.py
    ```
 
-2. follow the prompts. The script will generate the cards using the Open AI key and the app will create the csv files and import them into Anki automatically.
+2. follow the prompts. The script will generate the cards using the Open AI key, and the app will create the CSV files and import them into Anki automatically.
 
 ## Structure
 
