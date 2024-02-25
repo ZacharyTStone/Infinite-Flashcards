@@ -2,8 +2,8 @@ import requests
 import os
 
 def import_deck(deck_path):
-    # AnkiConnect endpoint URL
-    anki_url = "http://localhost:8765"
+    # AnkiConnect endpoint URL to import the deck
+    anki_url = os.getenv("ANKI_CONNECT_URL")
 
      # Get the absolute path of the deck file
     absolute_deck_path = os.path.abspath(deck_path)

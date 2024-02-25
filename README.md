@@ -8,7 +8,7 @@ This project is a Python script that generates Anki cards from a word list or es
 
 - Word-based card generation
 - Essay-based card generation
-- Option to generate CSV files or Excel files
+- Sentence-based card generation
 - Generation and import of Anki packages (.apkg) using AnkiConnect
 
 ## Requirements
@@ -27,36 +27,30 @@ This project is a Python script that generates Anki cards from a word list or es
    ```
    OPENAI_API_KEY=your_api_key_here
    ```
+3. Install AnkiConnect (if automatically importing into Anki):
+
+   - [AnkiConnect](https://ankiweb.net/shared/info/2055492159)
+   - set ANKI_CONNECT_URL in .env to the local address of AnkiConnect
+
+4. run create_text_files.py to create the necessary text files for the card generations
+   ```bash
+   python create_text_files.py
+   ```
 
 ## Usage
 
-- To generate word-based cards, add the words to a new file called words.txt in the word-based-cards folder and then run `word-based-cards/main.py`.
-- To generate essay-based cards, add the essay a new file called essay.txt in the essay-based-cards folder and then run `essay-based-cards/main.py`.
-- To generate sentance-based cards, add the sentences to a new file called sentences.txt in the sentence-based-cards folder and then run `sentence-based-cards/main.py`.
+1. Run the main.py script:
 
-## Project Structure
+   ```bash
+   python main.py
+   ```
 
-```
-.
-├── .env
-├── .gitignore
-├── README.md
-├── essay-based-cards
-│   ├── generate_csv.py
-│   ├── import_to_anki.py
-│   ├── make_anki_pkg.py
-│   └── main.py
-└── word-based-cards
-    ├── generate_csv.py
-    ├── import_to_anki.py
-    ├── make_anki_pkg.py
-    └── main.py
-```
+2. follow the prompts. The script will generate the cards using the Open AI key and the app will create the csv files and import them into Anki automatically.
 
 ## Notes
 
 - Be sure to set your OpenAI API key in the `.env` file.
-- If using AnkiConnect to automatically import cards into Anki, ensure the the local address in `import_to_anki.py` is correct.
+- If using AnkiConnect to automatically import cards into Anki update the ANKI_CONNECT_URL in the `.env` file to the local address of AnkiConnect.
 
 ## License
 
