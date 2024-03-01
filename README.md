@@ -29,7 +29,7 @@ This project is a Python script that generates Anki cards from a word list or es
    ```
 3. Set your  AnkiConnect key in the `.env` file (if automatically importing into Anki):
    - [AnkiConnect](https://ankiweb.net/shared/info/2055492159)
-   - set ANKI_CONNECT_URL in .env to the local address of AnkiConnect
+
    ```
     ANKI_CONNECT_URL=your AnkiConnect local host address
    ```
