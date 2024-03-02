@@ -12,7 +12,8 @@ def import_to_anki(csv_file_path, deck_name):
             {'name': 'Hiragana'},
             {'name': 'Example Sentence 1'},
             {'name': 'Example Sentence 2'},
-            {'name': 'English Translation'}
+            {'name': 'English Translation'},
+            {'name': 'Image URL'}
         ],
     templates=[
     {
@@ -23,6 +24,9 @@ def import_to_anki(csv_file_path, deck_name):
                     <h1>{{Example Sentence 1}}</h1>
                     <hr>
                     <h1><i>{{Word}}</i></h1>
+                    <hr>
+                    <img src="{{Image URL}}">
+                    <hr>
                 </div>
             </div>
         ''',
@@ -60,7 +64,8 @@ def import_to_anki(csv_file_path, deck_name):
                     row['Hiragana'],
                     row['Example Sentence 1'],
                     row['Example Sentence 2'],
-                    row['English Translation']
+                    row['English Translation'],
+                    row['Image URL']
                 ])
             deck.add_note(note)
 
@@ -75,6 +80,9 @@ def import_to_anki(csv_file_path, deck_name):
 
 # Replace 'Japanese_Word_Examples.csv' with the path to your CSV file
 csv_file_path = './files/Japanese_Word_Examples.csv'
+
+#log csv file path
+print(csv_file_path)
 
 # Replace 'Japanese Words' with the desired name for your Anki deck
 deck_name = 'Japanese_AI_Vocab_Deck'
