@@ -42,6 +42,8 @@ def generate_explanations(words):
         max_tokens=3500,
     )
 
+    print('prompt:', prompt)
+
     # Split the response text by newline and filter out any empty lines
     data = [line.strip() for line in response.choices[0].text.strip().split("\n") if line.strip()]
     
