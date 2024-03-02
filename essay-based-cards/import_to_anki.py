@@ -28,9 +28,11 @@ def import_deck(deck_path):
     if response.status_code == 200:
         print("Deck imported successfully.")
 
-        # delete files folder with the deck package and csv file
-        os.remove(absolute_deck_path)
-        print(response.json())
+         # delete all files in the files directory at the same level as this script
+        for file in os.listdir("./files"):
+            file_path = os.path.join("./files", file)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
 
 
         # delete the txt file at the same level as this script
