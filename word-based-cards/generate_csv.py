@@ -4,6 +4,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 import requests
+from utils import check_word_count
 
 # Load environment variables from .env file
 load_dotenv()
@@ -12,24 +13,6 @@ load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI(api_key=api_key)
-
-def fetch_image_url(word):
-    # Function to fetch image URL for a given word using Puppeteer or other technologies
-    # Here, we'll use a simple web scraping approach using requests and BeautifulSoup for demonstration
-    
-    # You may replace this with Puppeteer code if needed
-    search_url = f"https://www.google.com/search?q={word}&tbm=isch"
-    response = requests.get(search_url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    img_tags = soup.find_all('img')
-    if img_tags:
-        return img_tags[0]['src']
-    else:
-        return "N/A"  # Return placeholder if no image found
-
-def check_word_count(words, limit=10):
-    if len(words) > limit:
-        raise ValueError(f"The number of words exceeds {limit}. Please enter {limit} or fewer words.")
 
 def write_to_csv(data, filename="Japanese_Word_Examples.csv"):
     # Split the returned data into separate rows and adjust each row to have five fields

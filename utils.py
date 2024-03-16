@@ -44,3 +44,8 @@ def import_deck(deck_path, name_of_text_file):
             file.write("")
     else:
         print("Failed to import deck.")
+
+def check_word_count(words, limit=10):
+    if len(words) > limit:
+        raise ValueError(f"The number of words exceeds {limit}. Please enter {limit} or fewer words.")
+
