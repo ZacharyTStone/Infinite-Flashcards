@@ -9,11 +9,10 @@ def import_to_anki(csv_file_path, deck_name):
         'Japanese Word Model',
         fields=[
             {'name': 'Word'},
-            {'name': 'Hiragana'},
+            {'name': 'Word_Reading'},
             {'name': 'Example Sentence 1'},
             {'name': 'Example Sentence 2'},
-            {'name': 'English Translation'},
-            {'name': 'Image URL'}
+            {'name': 'Translation'},
         ],
     templates=[
     {
@@ -25,20 +24,18 @@ def import_to_anki(csv_file_path, deck_name):
                     <hr>
                     <h1><i>{{Word}}</i></h1>
                     <hr>
-                    <img src="{{Image URL}}">
-                    <hr>
                 </div>
             </div>
         ''',
         'afmt': '''
             <div class="card">
                 <div id="header">
-                    <h1><i>{{Word}} | {{Hiragana}}</i></h1>
+                    <h1><i>{{Word}} | {{Word_Reading}}</i></h1>
                     <hr>
                     <h2>1.{{Example Sentence 1}}</h2>
                     <h2>2.{{Example Sentence 2}}</h2>
                     <hr>
-                    <h2>{{English Translation}}</h2>
+                    <h2>{{Translation}}</h2>
                 </div>
             </div>
         '''
@@ -61,11 +58,10 @@ def import_to_anki(csv_file_path, deck_name):
                 model=model,
                 fields=[
                     row['Word'],
-                    row['Hiragana'],
+                    row['Word_Reading'],
                     row['Example Sentence 1'],
                     row['Example Sentence 2'],
-                    row['English Translation'],
-                    row['Image URL']
+                    row['Translation'],
                 ])
             deck.add_note(note)
 

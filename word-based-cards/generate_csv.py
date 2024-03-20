@@ -13,20 +13,6 @@ api_key = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI(api_key=api_key)
 
-def fetch_image_url(word):
-    # Function to fetch image URL for a given word using Puppeteer or other technologies
-    # Here, we'll use a simple web scraping approach using requests and BeautifulSoup for demonstration
-    
-    # You may replace this with Puppeteer code if needed
-    search_url = f"https://www.google.com/search?q={word}&tbm=isch"
-    response = requests.get(search_url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    img_tags = soup.find_all('img')
-    if img_tags:
-        return img_tags[0]['src']
-    else:
-        return "N/A"  # Return placeholder if no image found
-
 def check_word_count(words, limit=10):
     if len(words) > limit:
         raise ValueError(f"The number of words exceeds {limit}. Please enter {limit} or fewer words.")
@@ -36,7 +22,7 @@ def write_to_csv(data, filename="Japanese_Word_Examples.csv"):
     rows = [row.split(" | ")[:6] for row in data]
 
     # Convert rows into a pandas DataFrame
-    df = pd.DataFrame(rows, columns=["Word", "Hiragana", "Example Sentence 1", "Example Sentence 2", "English Translation", "Image URL"])
+    df = pd.DataFrame(rows, columns=["Word", "Word_Reading", "Example Sentence 1", "Example Sentence 2", "Translation"])
 
     # Save DataFrame to a CSV file
     df.to_csv(filename, index=False)
@@ -82,13 +68,8 @@ def main():
     # Check if the number of words exceeds the limit
     check_word_count(words)
 
-    # Generate explanations and image URLs for the words
+    # Generate explanations 
     data = generate_explanations(words)
-
-    # Fetch image URLs for the words and add to the data
-    for i, word in enumerate(words):
-        image_url = fetch_image_url(word)
-        data[i] += f" | {image_url}"  # Append image URL to the end of each line
 
     # Create CSV file
     write_to_csv(data)

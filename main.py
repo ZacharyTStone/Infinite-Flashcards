@@ -6,19 +6,23 @@ async def run_script(script):
     proc = await asyncio.create_subprocess_exec('python3', script)
     await proc.wait()
 
-async def main(folder):
-    if folder == 1:
-        folder_name = "word-based-cards"
-    elif folder == 2:
-        folder_name = "essay-based-cards"
-    elif folder == 3:
-        folder_name = "sentence-based-cards"
+async def main(language):
+    if language == 1:
+        card_language = 'Japanese'
     else:
-        print("Invalid choice. Please enter 1, 2, or 3.")
+        print("Invalid language choice.")
         return
 
-    folder_path = os.path.join(os.getcwd(), folder_name)
+    folder_path = os.path.join(os.getcwd(), 'word-based-cards')
     os.chdir(folder_path)
+
+    # add the language choice as a text file in the files folder so that the other scripts can read it
+    # make a new folder/file if it doesn't exist
+    
+    
+    with open('files/language_choice.txt', 'w') as file:
+        file.write(str(card_language))
+
 
     # List of scripts to run
     scripts = ['generate_csv.py', 'make_anki_pkg.py', 'import_to_anki.py']
@@ -27,8 +31,8 @@ async def main(folder):
     for script in scripts:
         await run_script(script)
 
-# Get user input for the folder choice
-folder_choice = input("Enter 1 for 'word-based-cards', 2 for 'essay-based-cards', or 3 for 'sentence-based-cards': ")
+# Get user input for the language choice
+language_choice = input("Enter 1 for Japanese (Currently only Japanese is supported) ").strip()
 
 # Run the main coroutine
-asyncio.run(main(int(folder_choice)))
+asyncio.run(main(int(language_choice)))

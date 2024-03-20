@@ -24,3 +24,6 @@ essay.txt
 ./word-based-cards/words.txt
 ./sentence-based-cards/sentences.txt
 ./essay-based-cards/essay.txt
+
+__pycache__
+
