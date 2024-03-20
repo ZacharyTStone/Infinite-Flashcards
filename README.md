@@ -59,7 +59,6 @@ This project is a Python script that generates Anki cards from a word list using
   - generate_csv.py
   - make_anki_pkg.py
   - import_to_anki.py
-  - main.py
 
 ## Notes
 
