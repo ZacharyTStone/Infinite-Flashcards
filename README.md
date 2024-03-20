@@ -37,6 +37,8 @@ This project is a Python script that generates Anki cards from a word list using
 
 1. Add words to the words.txt file
 
+2. Make sure the Anki app is open.
+
 2. Run the main.py script:
 
    ```bash
