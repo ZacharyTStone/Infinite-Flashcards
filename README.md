@@ -1,4 +1,4 @@
-# OpenAI Anki Card Generator
+# AI-Language-Learning-Flashcards
 
 This project is a Python script that generates Anki cards from a word list using OpenAI. The generated cards include word readings, example sentences, and basic definitions.
 
