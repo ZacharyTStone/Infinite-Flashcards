@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Language Choice</title>
+  </head>
+  <body>
+    <form method="post">
+      <label for="language"
+        >言語を選択してください（現在は日本語のみがサポートされています）:</label
+      >
+      <select name="language" id="language">
+        <option value="1">日本語</option>
+      </select>
+      <label for="words"
+        >追加する単語を入力してください（複数の単語を改行で区切ってください）:</label
+      >
+      <textarea name="words" id="words" rows="4" cols="50"></textarea>
+      <input type="submit" value="送信" />
+    </form>
+  </body>
+</html>
