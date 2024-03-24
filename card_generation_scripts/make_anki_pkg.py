@@ -3,7 +3,7 @@ import os
 import genanki
 
 def import_to_anki(csv_file_path, deck_name):
-    # Define the Anki model
+    # Define the Anki model with CSS
     model = genanki.Model(
         1607392319,  # Random model ID
         'Japanese Word Model',
@@ -14,34 +14,66 @@ def import_to_anki(csv_file_path, deck_name):
             {'name': 'Example Sentence 2'},
             {'name': 'Translation'},
         ],
-    templates=[
-    {
-        'name': 'Card 1',
-        'qfmt': '''
-            <div class="card">
-                <div id="header">
-                    <h1>{{Example Sentence 1}}</h1>
-                    <hr>
-                    <h1><i>{{Word}}</i></h1>
-                    <hr>
-                </div>
-            </div>
-        ''',
-        'afmt': '''
-            <div class="card">
-                <div id="header">
-                    <h1><i>{{Word}} | {{Word_Reading}}</i></h1>
-                    <hr>
-                    <h2>1.{{Example Sentence 1}}</h2>
-                    <h2>2.{{Example Sentence 2}}</h2>
-                    <hr>
-                    <h2>{{Translation}}</h2>
-                </div>
-            </div>
-        '''
-    }
-]
+        templates=[
+            {
+                'name': 'Card 1',
+                'qfmt': '''
+                    <div class="card">
+                        <div id="front">
+                            <h1>{{Example Sentence 1}}</h1>
+                            <hr>
+                            <h1 id="word"><i>{{Word}}</i></h1>
+                            <hr>
+                        </div>
+                    </div>
+                ''',
+                'afmt': '''
+                    <div class="card">
+                        <div id="back">
+                            <h1 id="word"><i>{{Word}} | {{Word_Reading}}</i></h1>
+                            <hr>
+                            <h2>1.{{Example Sentence 1}}</h2>
+                            <h2>2.{{Example Sentence 2}}</h2>
+                            <hr>
+                            <h2>{{Translation}}</h2>
+                        </div>
+                    </div>
+                '''
+            }
+        ],
+        css='''
+            .card {
+                font-family: MS PMincho;
+                font-size: 20px;
+                text-align: center;
+            }
 
+            #front {
+                font-size: 32px;
+
+                
+            }
+
+            #back {
+                font-size: 20px;
+                text-align: left;
+                padding: 20px;
+                
+
+                
+            }
+
+            #word {
+                // green color
+                color: #4CAF50;
+                font-size: 42px;
+            }
+
+
+
+            
+           
+        '''
     )
 
 
