@@ -1,14 +1,16 @@
 import os
 
 def create_blank_files():
-    files = ['words.txt']
+    base_path = os.path.dirname(__file__)  # 追加された行
+    files = [os.path.join(base_path, 'words.txt')]  # 変更された行
 
     for file in files:
         with open(file, 'w') as f:
             pass
 
 def main():
-    files_exist = all(os.path.isfile(file) for file in ['words.txt'])
+    base_path = os.path.dirname(__file__)  # 追加された行
+    files_exist = all(os.path.isfile(os.path.join(base_path, 'words.txt')) for file in ['words.txt'])  # 変更された行
     
     if files_exist:
         overwrite = input("Files already exist. Do you want to overwrite them? (yes/no): ").strip().lower()
