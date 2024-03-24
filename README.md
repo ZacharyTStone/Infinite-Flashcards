@@ -53,12 +53,14 @@ This project is a Python script that generates Anki cards from a word list using
 - .gitignore
 - README.md
 - requirements.txt
-- create_text_files.py
+
 - main.py
 - word-based-cards
   - generate_csv.py
   - make_anki_pkg.py
   - import_to_anki.py
+  - create_text_files.py
+  - words.txt
 
 ## Notes
 
