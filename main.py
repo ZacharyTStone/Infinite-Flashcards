@@ -13,13 +13,11 @@ async def main(language):
         print("Invalid language choice.")
         return
 
-    folder_path = os.path.join(os.getcwd(), 'word-based-cards')
+    folder_path = os.path.join(os.getcwd(), 'card_generation_scripts')
     os.chdir(folder_path)
 
     # add the language choice as a text file in the files folder so that the other scripts can read it
     # make a new folder/file if it doesn't exist
-    
-    
     with open('files/language_choice.txt', 'w') as file:
         file.write(str(card_language))
 

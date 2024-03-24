@@ -1,6 +1,6 @@
 # AI-Language-Learning-Flashcards
 
-This project is a Python script and soon to be web app that generates Anki cards from a word list using OpenAI. The generated cards include word readings, example sentences, and basic definitions.
+This project is a Python script that generates Anki cards from a word list using OpenAI. The generated cards include word readings, example sentences, and basic definitions.
 
 (currently, only Japanese cards are supported. This will change in the future)
 
@@ -30,7 +30,7 @@ This project is a Python script and soon to be web app that generates Anki cards
 
 4. run create_text_files.py to create the necessary text files for the card generations
    ```bash
-   python create_text_files.py
+   python card_generation_scripts/create_text_files.py
    ```
 
 ## Usage
@@ -39,13 +39,13 @@ This project is a Python script and soon to be web app that generates Anki cards
 
 2. Make sure the Anki app is open.
 
-2. Run the main.py script:
+3. Run the main.py script:
 
    ```bash
    python main.py
    ```
 
-2. follow the prompts. The script will generate the cards using the Open AI key, and the app will create the CSV files and import them into Anki automatically.
+4. follow the prompts. The script will generate the cards using the Open AI key, and the app will create the CSV files and import them into Anki automatically.
 
 ## Structure
 

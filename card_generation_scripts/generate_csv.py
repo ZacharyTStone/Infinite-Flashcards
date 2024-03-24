@@ -62,7 +62,7 @@ def generate_explanations(words):
 
 def main():
     # Read words from text file
-    with open("../words.txt", "r", encoding="utf-8") as file:
+    with open("words.txt", "r", encoding="utf-8") as file:
         words = [word.strip() for word in file.readlines()]
 
     # Check if the number of words exceeds the limit
