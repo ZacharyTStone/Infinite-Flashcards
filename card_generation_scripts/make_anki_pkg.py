@@ -44,29 +44,22 @@ def import_to_anki(csv_file_path, deck_name):
         css='''
             .card {
                 font-family: MS PMincho;
-                font-size: 20px;
-                text-align: center;
             }
 
             #front {
-                font-size: 32px;
-
-                
+              font-size: 16px;
+              text-align: center;
             }
 
             #back {
-                font-size: 20px;
+                font-size: 14px;
                 text-align: left;
                 padding: 20px;
-                
-
-                
             }
 
             #word {
-                // green color
                 color: #4CAF50;
-                font-size: 42px;
+                font-size: 32px !important;
             }
 
 
