@@ -13,9 +13,6 @@ api_key = os.getenv("OPENAI_API_KEY")
 
 client = OpenAI(api_key=api_key)
 
-def check_word_count(words, limit=5):
-    if len(words) > limit:
-        raise ValueError(f"The number of words exceeds {limit}. Please enter {limit} or fewer words.")
 
 def write_to_csv(data, filename="Japanese_Word_Examples.csv"):
     # Split the returned data into separate rows and adjust each row to have five fields
@@ -29,12 +26,20 @@ def write_to_csv(data, filename="Japanese_Word_Examples.csv"):
     print("CSV file created successfully!")
 
 def generate_explanations(words):
+
+
+    #read the selected language from the file and store it in a variable
+    with open("./files/language_choice.txt", "r", encoding="utf-8") as file:
+        language = file.read().strip()
+
+    print('language:', language)    
+
     # Construct the prompt dynamically based on the number of words
-    prompt = "Generate explanations and example sentences in Japanese for the following words in the format specified:\n"
+    prompt = f"Generate explanations and example sentences in {language} for the following words in the format specified:\n"
     for i, word in enumerate(words, start=1):
         prompt += f"{i}. {word}\n"
 
-    prompt += "\n Format the output as follows:\n<word>  | <word in hiragana> | <example sentence 1> | <example sentence 2> | <dictionary definition in Japanese>\n\nWarning: Ensure that the output strictly adheres to the specified format. Any deviation from the format will not be acceptable. each word should have the 5 fields separated by a pipe (|) symbol. Each word should be on a new line. the first field should be the word, the second the word in hiragna, the third a Japanese example sentance using the word, the fourth should be a Japanese example sentance using the word, the fifth and last section should be a direct Japanese definition of the word. You must put something for each section. if you can not find anything put N/A and a pipe to start the next field"
+    prompt += "\n Format the output as follows:\n<word>  | <word in hiragana> | <example sentence 1> | <example sentence 2> | <dictionary definition in {language}>\n\nWarning: Ensure that the output strictly adheres to the specified format. Any deviation from the format will not be acceptable. each word should have the 5 fields separated by a pipe (|) symbol. Each word should be on a new line. the first field should be the word, the second the word in hiragna, the third a {language} example sentence using the word, the fourth should be a {language} example sentence using the word, the fifth and last section should be a direct {language} definition of the word. You must put something for each section. if you can not find anything put N/A and a pipe to start the next field"
 
     prompt += "\n Example You have to follow when responding: 食べ物  | たべもの | 食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食物をかんで、のみこむ。\n\n"
     # Send prompt to OpenAI API
@@ -70,10 +75,20 @@ def main():
         words = [word.strip() for word in file.readlines()]
 
     # Check if the number of words exceeds the limit
-    check_word_count(words)
+    # check_word_count(words)
+
+    print('words:', words)
 
     # Generate explanations 
-    data = generate_explanations(words)
+
+    # we need to do 5 words at a time and combine the results
+   
+    data = []
+
+    for i in range(0, len(words), 5):
+        data.extend(generate_explanations(words[i:i+5]))
+    
+    print(data)
 
     # Create CSV file
     write_to_csv(data)
