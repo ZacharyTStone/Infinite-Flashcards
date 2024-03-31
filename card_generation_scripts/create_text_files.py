@@ -21,7 +21,7 @@ def main():
             print("Files not overwritten.")
     else:
         create_blank_files()
-        print("Files created.")
+        print("Words.txt created successfully. you can now add words to it in the card_generation_scripts folder.")
 
 if __name__ == "__main__":
     main()

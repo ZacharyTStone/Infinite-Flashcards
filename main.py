@@ -21,6 +21,14 @@ async def main(language):
     with open('files/language_choice.txt', 'w') as file:
         file.write(str(card_language))
 
+    # check if words.txt exists in card_generation_scripts
+    # if it doesn't exist, create it with the script create_text_files.py in card_generation_scripts
+    if not os.path.exists('words.txt'):
+        await run_script('create_text_files.py')
+        # get out of the main function
+        return
+        
+   
 
     # List of scripts to run
     scripts = ['generate_csv.py', 'make_anki_pkg.py', 'import_to_anki.py']
