@@ -26,11 +26,8 @@ def write_to_csv(data, filename="Japanese_Word_Examples.csv"):
     print("CSV file created successfully!")
 
 def generate_explanations(words):
-
-
-    #read the selected language from the file and store it in a variable
-    with open("./files/language_choice.txt", "r", encoding="utf-8") as file:
-        language = file.read().strip()
+    
+    language = 'Japanese'
 
     print('language:', language)    
 

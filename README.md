@@ -28,9 +28,10 @@ This project is a Python script that generates Anki cards from a word list using
     ANKI_CONNECT_URL=your AnkiConnect local host address
    ```
 
-4. run create_text_files.py to create the necessary text files for the card generations
+4. Run the main.py script to create the words.txt file in the card_generation_scripts folder:
+
    ```bash
-   python card_generation_scripts/create_text_files.py
+   python main.py
    ```
 
 ## Usage

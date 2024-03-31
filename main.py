@@ -6,20 +6,12 @@ async def run_script(script):
     proc = await asyncio.create_subprocess_exec('python3', script)
     await proc.wait()
 
-async def main(language):
-    if language == 1:
-        card_language = 'Japanese'
-    else:
-        print("Invalid language choice.")
-        return
+async def main():
+
 
     folder_path = os.path.join(os.getcwd(), 'card_generation_scripts')
-    os.chdir(folder_path)
 
-    # add the language choice as a text file in the files folder so that the other scripts can read it
-    # make a new folder/file if it doesn't exist
-    with open('files/language_choice.txt', 'w') as file:
-        file.write(str(card_language))
+    os.chdir(folder_path)
 
     # check if words.txt exists in card_generation_scripts
     # if it doesn't exist, create it with the script create_text_files.py in card_generation_scripts
@@ -27,7 +19,7 @@ async def main(language):
         await run_script('create_text_files.py')
         # get out of the main function
         return
-        
+
    
 
     # List of scripts to run
@@ -37,8 +29,6 @@ async def main(language):
     for script in scripts:
         await run_script(script)
 
-# Get user input for the language choice
-language_choice = input("Enter 1 for Japanese (Currently only Japanese is supported) ").strip()
 
 # Run the main coroutine
-asyncio.run(main(int(language_choice)))
+asyncio.run(main())
