@@ -14,12 +14,51 @@ api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key)
 
 
+
+def get_first_image_url(search_term, api_key, cx):
+    search_url = "https://www.googleapis.com/customsearch/v1"
+    params = {
+        'q': search_term,
+        'cx': cx,
+        'key': api_key,
+        'searchType': 'image',
+    }
+    response = requests.get(search_url, params=params)
+    result = response.json()
+
+
+    def find_image_src(obj, depth=0):
+        if depth > 10:
+            return None
+        if isinstance(obj, dict):
+            if 'cse_image' in obj and 'src' in obj['cse_image']:
+                return obj['cse_image']['src']
+            elif 'cse_thumbnail' in obj and 'src' in obj['cse_thumbnail']:
+                return obj['cse_thumbnail']['src']
+            for key in obj:
+                found = find_image_src(obj[key], depth + 1)
+                if found:
+                    return found
+        elif isinstance(obj, list):
+            for item in obj:
+                found = find_image_src(item, depth + 1)
+                if found:
+                    return found
+        return None
+
+    image_src = find_image_src(result)
+    return image_src if image_src else "N/A"
+# APIキーとCSE IDを設定
+img_api_key ="AIzaSyAouSHlENp5aBJqYlgiwA1NW_ZB-uP-j3Y"
+img_cx="d1ccb9c7c45814344"
+
+
 def write_to_csv(data, filename="Japanese_Word_Examples.csv"):
     # Split the returned data into separate rows and adjust each row to have five fields
     rows = [row.split(" | ")[:6] for row in data]
 
     # Convert rows into a pandas DataFrame
-    df = pd.DataFrame(rows, columns=["Word", "Word_Reading", "Example Sentence 1", "Example Sentence 2", "Translation"])
+    df = pd.DataFrame(rows, columns=["Word", "Word_Reading", "Example Sentence 1", "Image URL", "Example Sentence 2", "Translation"])
 
     # Save DataFrame to a CSV file
     df.to_csv(filename, index=False)
@@ -63,7 +102,20 @@ def generate_explanations(words):
             # Pad or truncate fields to ensure five fields
             data[i] = " | ".join(fields[:5]).ljust(5, " ")
     
-    return data
+    # Insert image URL after the first example sentence
+    updated_data = []
+
+    for line in data:
+        fields = line.split(" | ")
+        if len(fields) == 5:
+            image_url = get_first_image_url(fields[0], img_api_key, img_cx)
+            fields.insert(2, image_url)
+            updated_line = " | ".join(fields)
+            updated_data.append(updated_line)
+        else:
+            updated_data.append(line)
+    
+    return updated_data
 
 
 def main():

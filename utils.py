@@ -6,23 +6,23 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def clear_and_create_file(directory, name_of_text_file):
-    # Delete all files in the specified directory
-    for file in os.listdir(directory):
-        file_path = os.path.join(directory, file)
-        if os.path.isfile(file_path):
-            os.remove(file_path)
+    # # Delete all files in the specified directory
+    # for file in os.listdir(directory):
+    #     file_path = os.path.join(directory, file)
+    #     if os.path.isfile(file_path):
+    #         os.remove(file_path)
 
-    # Delete the txt file
-    txt_file_path = os.path.join(name_of_text_file + ".txt")
+    # # Delete the txt file
+    # txt_file_path = os.path.join(name_of_text_file + ".txt")
     
-    if os.path.exists(txt_file_path):
-        os.remove(txt_file_path)
-    else:
-        print("The file does not exist. Please clear your text file manually before running the script again.")
+    # if os.path.exists(txt_file_path):
+    #     os.remove(txt_file_path)
+    # else:
+    #     print("The file does not exist. Please clear your text file manually before running the script again.")
 
-    # Make a new txt file
-    with open(txt_file_path, "w") as file:
-        file.write("")
+    # # Make a new txt file
+    # with open(txt_file_path, "w") as file:
+    #     file.write("")
 
 def import_deck(deck_path, name_of_text_file):
     # AnkiConnect endpoint URL to import the deck
