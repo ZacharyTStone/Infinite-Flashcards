@@ -49,8 +49,8 @@ def get_first_image_url(search_term, api_key, cx):
     image_src = find_image_src(result)
     return image_src if image_src else "N/A"
 # APIキーとCSE IDを設定
-img_api_key ="AIzaSyAouSHlENp5aBJqYlgiwA1NW_ZB-uP-j3Y"
-img_cx="d1ccb9c7c45814344"
+img_api_key = os.getenv("IMG_API_KEY")
+img_cx = os.getenv("IMG_CX")
 
 
 def write_to_csv(data, filename="Japanese_Word_Examples.csv"):
