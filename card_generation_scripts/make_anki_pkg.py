@@ -59,7 +59,7 @@ def import_to_anki(csv_file_path, deck_name):
 
             #word {
                 color: #8B0000;
-                font-size: 32px !important;
+                font-size: 42px !important;
             }
 
 
