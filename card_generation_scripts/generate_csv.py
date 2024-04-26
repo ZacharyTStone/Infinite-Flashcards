@@ -78,12 +78,12 @@ def main():
 
     # Generate explanations 
 
-    # we need to do 5 words at a time and combine the results
+    # we need to do 4 words at a time and combine the results
    
     data = []
 
-    for i in range(0, len(words), 5):
-        data.extend(generate_explanations(words[i:i+5]))
+    for i in range(0, len(words), 4):
+        data.extend(generate_explanations(words[i:i+4]))
     
     print(data)
 

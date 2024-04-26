@@ -47,12 +47,12 @@ def import_to_anki(csv_file_path, deck_name):
             }
 
             #front {
-              font-size: 16px;
+              font-size: 24px;
               text-align: center;
             }
 
             #back {
-                font-size: 14px;
+                font-size: 24px;
                 text-align: left;
                 padding: 20px;
             }
