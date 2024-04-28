@@ -20,7 +20,7 @@ def import_to_anki(csv_file_path, deck_name):
                 'qfmt': '''
                     <div class="card">
                         <div id="front">
-                            <h1>{{Example Sentence 1}}</h1>
+                            <h1 id="example-sentance">{{Example Sentence 1}}</h1>
                             <hr>
                             <h1 id="word"><i>{{Word}}</i></h1>
                             <hr>
@@ -32,7 +32,7 @@ def import_to_anki(csv_file_path, deck_name):
                         <div id="back">
                             <h1 id="word"><i>{{Word}} | {{Word_Reading}}</i></h1>
                             <hr>
-                            <h2>1.{{Example Sentence 1}}</h2>
+                            <h2 id="example-sentance">1.{{Example Sentence 1}}</h2>
                             <h2>2.{{Example Sentence 2}}</h2>
                             <hr>
                             <h2>{{Translation}}</h2>
@@ -62,7 +62,8 @@ def import_to_anki(csv_file_path, deck_name):
 
             #word {
                 color: #4a90e2;
-                font-size: 42px !important;
+                font-size: 52px;
+                font-weight: bold;
             }
 
             * {
@@ -79,14 +80,25 @@ def import_to_anki(csv_file_path, deck_name):
                 background-color: #fffaf0;
                 color: #2a1b0a;
                 font-family: "Noto Serif", "Noto Serif CJK JP", Yu Mincho, "Liberation Serif", "Times New Roman", Times, Georgia, Serif;
-                font-size: 24px;
+                font-size: 32px;
                 text-align: left;
                 line-height: 1.4;
                 margin: 0 auto;
-                
+               
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
+            }
+
+           
+        
+            #example-sentance {
+            
+                font-style: italic;
+                font-weight: bold;
+                color:     #4a90e2;
+                margin-bottom: 10px;
+
             }
         '''
     )
