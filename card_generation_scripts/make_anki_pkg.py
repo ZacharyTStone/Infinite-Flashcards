@@ -90,15 +90,36 @@ def import_to_anki(csv_file_path, deck_name):
                 gap: 10px;
             }
 
-           
-        
             #example-sentance {
-            
                 font-style: italic;
                 font-weight: bold;
-                color:     #4a90e2;
+                color: #4a90e2;
                 margin-bottom: 10px;
+            }
 
+            @media (max-width: 600px) {
+                .card {
+                    padding: 10px;
+                    margin: 10px;
+                    font-size: 24px;
+                    min-height: 100%;
+                    min-width: 100%;
+                    height:100vh;
+                    width: 100vw;
+                }
+
+                #word {
+                    font-size: 36px;
+                }
+
+                #front {
+                    gap: 10px;
+                }
+
+                #back {
+                    margin: 10px;
+                    gap: 5px;
+                }
             }
         '''
     )
@@ -142,4 +163,3 @@ print(csv_file_path)
 deck_name = 'Japanese_AI_Vocab_Deck'
 
 import_to_anki(csv_file_path, deck_name)
-
