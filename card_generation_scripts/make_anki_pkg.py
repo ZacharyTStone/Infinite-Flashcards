@@ -49,20 +49,20 @@ def import_to_anki(csv_file_path, deck_name):
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 20px;
+                gap: 10px;
             }
 
             #back {
                 text-align: left;
-                padding: 20px;
+                padding: 10px;
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 5px;
             }
 
             #word {
                 color: #4a90e2;
-                font-size: 52px;
+                font-size: 36px;
                 font-weight: bold;
             }
 
@@ -75,49 +75,30 @@ def import_to_anki(csv_file_path, deck_name):
             .card {
                 width: 100%;
                 height: 100%;
-                padding: 20px;
-                margin: 20px;
+                padding: 10px;
+                margin: 10px;
                 background-color: #fffaf0;
                 color: #2a1b0a;
+                max-width: 1000px;
                 font-family: "Noto Serif", "Noto Serif CJK JP", Yu Mincho, "Liberation Serif", "Times New Roman", Times, Georgia, Serif;
-                font-size: 32px;
+                font-size: 24px;
                 text-align: left;
-                line-height: 1.4;
                 margin: 0 auto;
-               
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
+                gap: 5px;
+                border: 2px solid #4a90e2;
+                border-radius: 10px;
             }
 
             #example-sentance {
                 font-style: italic;
                 font-weight: bold;
-                color: #008000;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
             }
 
-            @media (max-width: 600px) {
-                .card {
-                    padding: 10px;
-                    margin: 10px;
-                    font-size: 24px;
-                    
-                }
-
-                #word {
-                    font-size: 36px;
-                }
-
-                #front {
-                    gap: 10px;
-                }
-
-                #back {
-                    margin: 10px;
-                    gap: 5px;
-                }
-            }
+         
+            
         '''
     )
 
