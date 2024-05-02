@@ -10,7 +10,7 @@ This Python script significantly simplifies the process of creating new cards, a
 
 - Python
 - OpenAI API key
-- Anki + AnkiConnect (if automatically importing into Anki)
+- Anki + AnkiConnect
 
 ## Setup
 
