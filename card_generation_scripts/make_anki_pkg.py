@@ -20,9 +20,9 @@ def import_to_anki(csv_file_path, deck_name):
                 'qfmt': '''
                     <div class="card">
                         <div id="front">
+                             <h1 id="word">{{Word}}</h1>
+                             <hr>
                             <h1 id="example-sentance">{{Example Sentence 1}}</h1>
-                            <hr>
-                            <h1 id="word"><i>{{Word}}</i></h1>
                             <hr>
                         </div>
                     </div>
@@ -30,7 +30,7 @@ def import_to_anki(csv_file_path, deck_name):
                 'afmt': '''
                     <div class="card">
                         <div id="back">
-                            <h1 id="word"><i>{{Word}} | {{Word_Reading}}</i></h1>
+                            <h1 id="word">{{Word}} | {{Word_Reading}}</h1>
                             <hr>
                             <h2 id="example-sentance">1.{{Example Sentence 1}}</h2>
                             <h2>2.{{Example Sentence 2}}</h2>
@@ -62,7 +62,7 @@ def import_to_anki(csv_file_path, deck_name):
 
             #word {
                 color: #4a90e2;
-                font-size: 36px;
+                font-size: 36px !important;
                 font-weight: bold;
             }
 
