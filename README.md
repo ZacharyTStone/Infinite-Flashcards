@@ -1,8 +1,10 @@
 # Lingo Lab
 
-This project is a Python script that generates Anki flashcards from a word list of Japanese words using OpenAI. 
+This project is a Python script that generates Anki flashcards from a word list using OpenAI. 
 
-The generated cards include word readings, example sentences, and basic definitions.
+The generated cards include word readings, example sentences, and fundamental definitions.
+
+This Python script significantly simplifies the process of creating new cards, allowing learners to focus on studying rather than card creation.
 
 ## Requirements
 
