@@ -1,13 +1,14 @@
 # AI-Japanese-Language-Flashcard-Generator
 
-This project is a Python script that generates Anki cards from a word list using OpenAI. The generated cards include word readings, example sentences, and basic definitions.
+This project is a Python script that generates Anki cards from a word list using OpenAI. 
 
+The generated cards include word readings, example sentences, and basic definitions.
 
 ## Requirements
 
-- Python 3
+- Python
 - OpenAI API key
-- AnkiConnect (if automatically importing into Anki)
+- Anki + AnkiConnect (if automatically importing into Anki)
 
 ## Setup
 
