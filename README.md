@@ -1,4 +1,4 @@
-# LingoLab
+# Lingo Lab
 
 This project is a Python script that generates Anki flashcards from a word list of Japanese words using OpenAI. 
 
