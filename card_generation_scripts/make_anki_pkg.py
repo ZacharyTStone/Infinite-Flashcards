@@ -62,7 +62,6 @@ def import_to_anki(csv_file_path, deck_name):
 
             #word {
                 color: #4a90e2;
-                font-size: 36px !important;
                 font-weight: bold;
             }
 
@@ -93,7 +92,7 @@ def import_to_anki(csv_file_path, deck_name):
 
             #example-sentance {
                 font-style: italic;
-                font-weight: bold;
+                
                 margin-bottom: 5px;
             }
 
