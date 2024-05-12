@@ -2,7 +2,7 @@
 
 This project is a Python script that generates Japanese Anki flashcards from a word list using OpenAI. 
 
-The generated cards include word readings, example sentences, and fundamental definitions.
+The generated cards include word readings, pitch accent, example sentences, and definitions.
 
 This Python script significantly simplifies the process of creating new cards, allowing learners to focus on studying rather than card creation.
 
@@ -22,9 +22,9 @@ This Python script significantly simplifies the process of creating new cards, a
    ```
    OPENAI_API_KEY=your_api_key_here
    ```
-3. Set your AnkiConnect key in the `.env` file (if automatically importing into Anki):
+3. Set your AnkiConnect key in the `.env` file
 
-   - [AnkiConnect](https://ankiweb.net/shared/info/2055492159)
+   - [AnkiConnect Extention](https://ankiweb.net/shared/info/2055492159)
 
    ```
     ANKI_CONNECT_URL=your AnkiConnect local host address
