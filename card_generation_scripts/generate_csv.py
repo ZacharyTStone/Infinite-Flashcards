@@ -36,9 +36,9 @@ def generate_explanations(words):
     for i, word in enumerate(words, start=1):
         prompt += f"{i}. {word}\n"
 
-    prompt += "\n Format the output as follows:\n<word>  | <word in hiragana> (平板型 or 頭高型 or 中高型 or 尾高型) | <example sentence 1> | <example sentence 2> | <dictionary definition in {language}>\n\nWarning: Ensure that the output strictly adheres to the specified format. Any deviation from the format will not be acceptable. each word should have the 5 fields separated by a pipe (|) symbol. Each word should be on a new line. the first field should be the word, the second the word in hiragna, the third a {language} example sentence using the word, the fourth should be a {language} example sentence using the word, the fifth and last section should be a direct {language} definition of the word. You must put something for each section. if you can not find anything put N/A and a pipe to start the next field"
+    prompt += "\n Format the output as follows:\n<word>  | <word in hiragana> (Pitch Accent Notation Number according to NHK Accent Dictionary aka NHK日本語発音アクセント新辞典) | <example sentence 1> | <example sentence 2> | <dictionary definition in {language}>\n\nWarning: Ensure that the output strictly adheres to the specified format. Any deviation from the format will not be acceptable. each word should have the 5 fields separated by a pipe (|) symbol. Each word should be on a new line. the first field should be the word, the second the word in hiragna with the  NHK Accent Dictionary pitch accent inbetween parenthesis. Note please check the  NHK Accent Dictionary to ensure it's the correct number, the third a {language} example sentence using the word, the fourth should be a {language} example sentence using the word, the fifth and last section should be a direct {language} definition of the word. You must put something for each section. if you can not find anything put N/A and a pipe to start the next field"
 
-    prompt += "\n Example You have to follow when responding: 食べ物  | たべもの (中高型) | 食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食物をかんで、のみこむ。\n\n"
+    prompt += "\n Example Format you have to follow when responding: 食べ物  | たべもの (2) | 食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食物をかんで、のみこむ。\n\n"
     # Send prompt to OpenAI API
     response = client.completions.create(
         model="gpt-3.5-turbo-instruct",
