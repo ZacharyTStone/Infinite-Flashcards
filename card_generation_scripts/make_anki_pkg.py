@@ -18,86 +18,87 @@ def import_to_anki(csv_file_path, deck_name):
             {
                 'name': 'Card 1',
                 'qfmt': '''
-                    <div class="card">
-                        <div id="front">
-                             <h1 id="word">{{Word}}</h1>
-                             <hr>
-                            <h1 id="example-sentance">{{Example Sentence 1}}</h1>
-                            <hr>
+                    <div class="wrap">
+                        <div class="fside">{{FrontSide}}</div>
+
+                        <div class="sent-center">
+                            <div class="jpsentence" lang="ja">
+                                {{Example Sentence 1}}
+                            </div>
                         </div>
                     </div>
                 ''',
                 'afmt': '''
-                    <div class="card">
-                        <div id="back">
-                            <h1 id="word">{{Word}} | {{Word_Reading}}</h1>
-                            <hr>
-                            <h2 id="example-sentance">1.{{Example Sentence 1}}</h2>
-                            <h2>2.{{Example Sentence 2}}</h2>
-                            <hr>
-                            <h2>{{Translation}}</h2>
+                    <div class="wrap">
+                        <div class="fside">{{Word}} | {{Word_Reading}}</div>
+
+                        <div class="sent-center">
+                            <div class="jpsentence" lang="ja">
+                                1. {{Example Sentence 1}}<br>
+                                2. {{Example Sentence 2}}
+                            </div>
+                            <div class="ensentence" lang="en">{{Translation}}</div>
                         </div>
+                        <footer>
+                            <a title="Translate with Google Translate" target="_blank"
+                                href="https://translate.google.com/?hl=en&sl=ja&tl=en&text={{Word}}&op=translate">Translate</a>
+                            <a href="https://jisho.org/search?keyword={{Word}}" title="Word on Jisho">English Dictionary</a>
+                            <a href="https://dictionary.goo.ne.jp/srch/all/{{Word}}/m0u/" title="Word on Japanese Dictionary">Japanese Dictionary</a>
+                            <a href="https://www.google.co.jp/search?q={{Word}}&tbm=isch" title="Search images">Images</a>
+                        </footer>
                     </div>
                 '''
             }
         ],
         css='''
-         
-            #front {
+            .wrap {
+                color: white;
+                background-color: #2e2e2e;
+                padding: 20px;
+                border-radius: 10px;
                 text-align: center;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
+                margin-bottom: 30px; 
             }
 
-            #back {
-                text-align: left;
-                padding: 10px;
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-            }
-
-            #word {
-                color: #4a90e2;
+            .fside {
+                font-size: 30px;
                 font-weight: bold;
+                margin-bottom: 20px; 
             }
 
-            * {
-                box-sizing: border-box;
-                padding: 0;
-                margin: 0;
+            .sent-center {
+                margin-top: 20px;
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .jpsentence {
+                font-family: "Noto Serif", "Noto Serif CJK JP", Yu Mincho, "Liberation Serif", "Times New Roman", Times, Georgia, Serif;
+                margin-bottom: 20px; 
+            }
+
+            .ensentence {
+                margin-top: 10px;
+                color: #a0a0a0;
+                margin-bottom: 20px; 
+            }
+
+            footer {
+                margin-top: 20px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            footer a {
+                color: #4a90e2;
+                margin-right: 10px;
             }
 
             .card {
-                width: 100%;
-                height: 100%;
-                padding: 10px;
-                margin: 10px;
-                background-color: #fffaf0;
-                color: #2a1b0a;
-                max-width: 1000px;
-                font-family: "Noto Serif", "Noto Serif CJK JP", Yu Mincho, "Liberation Serif", "Times New Roman", Times, Georgia, Serif;
-                font-size: 24px;
-                text-align: left;
-                margin: 0 auto;
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                border: 2px solid #4a90e2;
-                border-radius: 10px;
+                background-color: #2e2e2e;
+                color: white;
+                margin-bottom: 30px; 
             }
-
-            #example-sentance {
-                font-style: italic;
-                
-                margin-bottom: 5px;
-            }
-
-         
-            
         '''
     )
 
@@ -125,7 +126,7 @@ def import_to_anki(csv_file_path, deck_name):
     package = genanki.Package(deck)
     package.write_to_file(f'{deck_name}.apkg')
 
-    # move the apkg file to the correct directory ./files
+    # Move the apkg file to the correct directory ./files
     os.rename(f'{deck_name}.apkg', f'./files/{deck_name}.apkg')
 
     print(f'Anki package "{deck_name}.apkg" created successfully.')
@@ -133,7 +134,7 @@ def import_to_anki(csv_file_path, deck_name):
 # Replace 'Japanese_Word_Examples.csv' with the path to your CSV file
 csv_file_path = './files/Japanese_Word_Examples.csv'
 
-#log csv file path
+# Log csv file path
 print(csv_file_path)
 
 # Replace 'Japanese Words' with the desired name for your Anki deck
