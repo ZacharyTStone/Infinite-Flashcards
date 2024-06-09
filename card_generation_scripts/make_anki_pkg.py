@@ -1,6 +1,10 @@
 import csv
 import os
 import genanki
+import platform
+from pathlib import Path
+
+csv_file_path = './files/Japanese_Word_Examples_With_Audio.csv'
 
 def import_to_anki(csv_file_path, deck_name):
     # Define the Anki model with CSS
@@ -13,6 +17,7 @@ def import_to_anki(csv_file_path, deck_name):
             {'name': 'Example Sentence 1'},
             {'name': 'Example Sentence 2'},
             {'name': 'Translation'},
+            {'name': 'Audio'},
         ],
         templates=[
             {
@@ -30,7 +35,7 @@ def import_to_anki(csv_file_path, deck_name):
                 ''',
                 'afmt': '''
                     <div class="wrap">
-                        <div class="fside">{{Word}} | {{Word_Reading}}</div>
+                        <div class="fside">{{Word}} | {{Word_Reading}} {{Audio}}</div>
 
                         <div class="sent-center">
                             <div class="jpsentence" lang="ja">
@@ -104,35 +109,45 @@ def import_to_anki(csv_file_path, deck_name):
 
     # Create a new Anki deck
     deck = genanki.Deck(
-        2059400110,  # Random deck ID
+        2059400110,
         deck_name)
 
     # Read data from CSV and add to Anki deck
     with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
+            word = row['Word']
+            reading = row['Word_Reading']
+            sentence1 = row['Example Sentence 1']
+            sentence2 = row['Example Sentence 2']
+            translation = row['Translation']
+            audio = row['Audio']
+            
+
             note = genanki.Note(
                 model=model,
                 fields=[
-                    row['Word'],
-                    row['Word_Reading'],
-                    row['Example Sentence 1'],
-                    row['Example Sentence 2'],
-                    row['Translation'],
+                    word,
+                    reading,
+                    sentence1,
+                    sentence2,
+                    translation,
+                    audio,
                 ])
             deck.add_note(note)
 
+    # Collect all audio files from the files folder
+    audio_files = [os.path.join('./files', f) for f in os.listdir('./files') if os.path.isfile(os.path.join('./files', f)) and f.endswith('.mp3')]
+
     # Create Anki package
     package = genanki.Package(deck)
+    package.media_files = audio_files
     package.write_to_file(f'{deck_name}.apkg')
 
     # Move the apkg file to the correct directory ./files
     os.rename(f'{deck_name}.apkg', f'./files/{deck_name}.apkg')
 
     print(f'Anki package "{deck_name}.apkg" created successfully.')
-
-# Replace 'Japanese_Word_Examples.csv' with the path to your CSV file
-csv_file_path = './files/Japanese_Word_Examples.csv'
 
 # Log csv file path
 print(csv_file_path)

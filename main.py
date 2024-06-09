@@ -23,7 +23,7 @@ async def main():
    
 
     # List of scripts to run
-    scripts = ['generate_csv.py', 'make_anki_pkg.py', 'import_to_anki.py']
+    scripts = ['generate_csv.py', 'generate_audio.py', 'make_anki_pkg.py', 'import_to_anki.py']
 
     # Run scripts sequentially
     for script in scripts:
