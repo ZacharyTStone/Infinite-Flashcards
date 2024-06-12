@@ -15,7 +15,8 @@ def import_to_anki(csv_file_path, deck_name):
             {'name': 'Example Sentence 2'},
             {'name': 'Translation'},
             {'name': 'Word_Audio'},
-            {'name': 'Example_Sentence_1_Audio'}
+            {'name': 'Example_Sentence_1_Audio'},
+            {'name': 'Dictionary_Definition_Audio'}
         ],
         templates=[
             {
@@ -40,7 +41,7 @@ def import_to_anki(csv_file_path, deck_name):
                                 1. {{Example Sentence 1}} {{Example_Sentence_1_Audio}}<br>
                                 2. {{Example Sentence 2}}
                             </div>
-                            <div class="ensentence" lang="en">{{Translation}}</div>
+                            <div class="ensentence" lang="en">{{Translation}} {{Dictionary_Definition_Audio}}</div>
                         </div>
                         <footer>
                             <a title="Translate with Google Translate" target="_blank"
@@ -78,6 +79,7 @@ def import_to_anki(csv_file_path, deck_name):
             .jpsentence {
                 font-family: "Noto Serif", "Noto Serif CJK JP", Yu Mincho, "Liberation Serif", "Times New Roman", Times, Georgia, Serif;
                 margin-bottom: 20px; 
+                font-size: 1.3em;
             }
 
             .ensentence {
@@ -119,6 +121,7 @@ def import_to_anki(csv_file_path, deck_name):
             translation = row['Translation']
             word_audio = row['Word_Audio']
             example_sentence_1_audio = row['Example_Sentence_1_Audio']
+            dictionary_definition_audio = row['Dictionary_Definition_Audio']
 
             note = genanki.Note(
                 model=model,
@@ -129,7 +132,8 @@ def import_to_anki(csv_file_path, deck_name):
                     sentence2,
                     translation,
                     word_audio,
-                    example_sentence_1_audio
+                    example_sentence_1_audio,
+                    dictionary_definition_audio
                 ])
             deck.add_note(note)
 

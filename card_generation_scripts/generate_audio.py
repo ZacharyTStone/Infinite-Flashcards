@@ -23,17 +23,20 @@ def main():
     for row in words:
         word = row[0]
         example_sentence_1 = row[2]
+        dictionary_definition = row[4]
         
         word_audio_file = generate_audio(word, word)
         example_sentence_1_audio_file = generate_audio(example_sentence_1, f"{word}_example_1")
+        dictionary_definition_audio_file = generate_audio(dictionary_definition, f"{word}_definition")
         
         row.append(f"[sound:{word}.mp3]")
         row.append(f"[sound:{word}_example_1.mp3]")
+        row.append(f"[sound:{word}_definition.mp3]")
 
     # 新しいCSVファイルに書き込む
     with open(updated_csv_file, "w", newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(header + ["Word_Audio", "Example_Sentence_1_Audio"])
+        writer.writerow(header + ["Word_Audio", "Example_Sentence_1_Audio", "Dictionary_Definition_Audio"])
         writer.writerows(words)
 
     print("オーディオファイルが正常に生成され、CSVファイルが更新されました。")
