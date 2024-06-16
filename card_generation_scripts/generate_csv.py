@@ -38,7 +38,7 @@ def generate_explanations(words):
 
     prompt += "\n Format the output as follows:\n<word>  | <word in hiragana using the most popular reading> (Pitch Accent Notation Number according to NHK Accent Dictionary aka NHK日本語発音アクセント新辞典) | <example sentence 1> | <example sentence 2> | <dictionary definition in {language}>\n\nWarning: Ensure that the output strictly adheres to the specified format. Any deviation from the format will not be acceptable. each word should have the 5 fields separated by a pipe (|) symbol. Each word should be on a new line. the first field should be the word, the second the word in hiragna with the  NHK Accent Dictionary pitch accent inbetween parenthesis. Note please check the  NHK Accent Dictionary to ensure it's the correct number, the third a {language} example sentence using the word, the fourth should be a {language} example sentence using the word, the fifth and last section should be a direct {language} definition of the word. You must put something for each section. if you can not find anything put N/A and a pipe to start the next field. Please search the web for any information you are unsure about to ensure accuracy."
 
-    prompt += "\n Example Format you have to follow when responding: 食べ物  | たべもの (2) | 食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食物をかんで、のみこむ。\n\n"
+    prompt += "\n Example Format you have to follow when responding: 食べ物  | たべもの (2) | 食べ物が好きで��。 | この店の食べ物はとても美味しいです。 | 食物をかんで、のみこむ。\n\n"
     # Send prompt to OpenAI API
     response = client.completions.create(
         model="gpt-3.5-turbo-instruct",
@@ -65,27 +65,28 @@ def generate_explanations(words):
     
     return data
 
+def read_words_from_file(file_path):
+    words = []
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            for line in file:
+                stripped_line = line.strip()
+                if stripped_line:  # Exclude empty lines
+                    words.extend(stripped_line.split())  # Split words separated by spaces into individual lines
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+    except IOError:
+        print(f"Error reading file: {file_path}")
+    return words
 
 def main():
     # Read words from text file
-    with open("words.txt", "r", encoding="utf-8") as file:
-        words = []
-        for line in file:
-            stripped_line = line.strip()
-            if stripped_line:  # 空行を除外
-                words.extend(stripped_line.split())  # スペースで区切られた単語を個別の行に分割
-
-    # Check if the number of words exceeds the limit
-    # check_word_count(words)
+    words = read_words_from_file("words.txt")
 
     print('words:', words)
 
     # Generate explanations 
-
-    # we need to do 4 words at a time and combine the results
-   
     data = []
-
     for i in range(0, len(words), 3):
         data.extend(generate_explanations(words[i:i+3]))
     
