@@ -1,6 +1,9 @@
 import csv
 import os
 import genanki
+from dotenv import load_dotenv
+
+load_dotenv()
 
 csv_file_path = './files/Japanese_Word_Examples_With_Audio.csv'
 
@@ -79,7 +82,8 @@ def import_to_anki(csv_file_path, deck_name):
             .jpsentence {
                 font-family: "Noto Serif", "Noto Serif CJK JP", Yu Mincho, "Liberation Serif", "Times New Roman", Times, Georgia, Serif;
                 margin-bottom: 20px; 
-                font-size: 1.3em;
+                font-size: 2rem;
+                font-weight: bold;
             }
 
             .ensentence {
@@ -145,5 +149,5 @@ def import_to_anki(csv_file_path, deck_name):
 
     print(f'Anki package "{deck_name}.apkg" created successfully.')
 
-deck_name = 'Japanese_AI_Vocab_Deck'
+deck_name = os.getenv("ANKI_DECK_NAME", "Japanese_AI_Vocab_Deck")
 import_to_anki(csv_file_path, deck_name)
