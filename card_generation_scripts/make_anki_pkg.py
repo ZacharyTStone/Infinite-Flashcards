@@ -1,11 +1,15 @@
 import csv
 import os
+import sys
 import genanki
 from dotenv import load_dotenv
 
-load_dotenv()
+# Add the parent directory to the sys.path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-csv_file_path = './files/Japanese_Word_Examples_With_Audio.csv'
+from variables import CSV_FILE_PATH, ANKI_DECK_NAME
+
+load_dotenv()
 
 def import_to_anki(csv_file_path, deck_name):
     model = genanki.Model(
@@ -149,5 +153,4 @@ def import_to_anki(csv_file_path, deck_name):
 
     print(f'Anki package "{deck_name}.apkg" created successfully.')
 
-deck_name = os.getenv("ANKI_DECK_NAME", "Japanese_AI_Vocab_Deck")
-import_to_anki(csv_file_path, deck_name)
+import_to_anki(CSV_FILE_PATH, ANKI_DECK_NAME)

@@ -1,9 +1,10 @@
 import os
 import requests
-from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
+from variables import ANKI_CONNECT_URL
+
+
+
 
 def clear_and_create_file(directory, name_of_text_file):
     # Delete all files in the specified directory
@@ -26,7 +27,8 @@ def clear_and_create_file(directory, name_of_text_file):
 
 def import_deck(deck_path, name_of_text_file):
     # AnkiConnect endpoint URL to import the deck
-    anki_url = os.getenv("ANKI_CONNECT_URL")
+    anki_url = ANKI_CONNECT_URL
+    print(f"wow anki_url: {anki_url}")
 
     # Get the absolute path of the deck file
     absolute_deck_path = os.path.abspath(deck_path)
@@ -50,4 +52,3 @@ def import_deck(deck_path, name_of_text_file):
         clear_and_create_file('./files', "words")
     else:
         print("Failed to import deck.")
-
