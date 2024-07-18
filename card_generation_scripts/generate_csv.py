@@ -26,25 +26,33 @@ def write_to_csv(data, filename="Japanese_Word_Examples.csv"):
     print("CSV file created successfully!")
 
 def generate_explanations(words):
-    
     language = 'Japanese'
-
     print('language:', language)    
 
     # Construct the prompt dynamically based on the number of words
-    prompt = f"Generate explanations and example sentences in {language} for the following words in the format specified:\n"
+    prompt = f"Generate {language} explanations for these words, following the format EXACTLY:\n"
     for i, word in enumerate(words, start=1):
         prompt += f"{i}. {word}\n"
 
-    prompt += "\n Format the output as follows:\n<word>  | <word in hiragana using the most popular reading> (Pitch Accent Notation Number according to NHK Accent Dictionary aka NHK日本語発音アクセント新辞典) | <example sentence 1> | <example sentence 2> | <dictionary definition in clear {language}>\n\nWarning: Ensure that the output strictly adheres to the specified format. Any deviation from the format will not be acceptable. each word should have the 5 fields separated by a pipe (|) symbol. Each word should be on a new line. the first field should be the word, the second the word in hiragna with the  NHK Accent Dictionary pitch accent inbetween parenthesis. Note please check the  NHK Accent Dictionary to ensure it's the correct number, the third a {language} example sentence using the word, the fourth should be a {language} example sentence using the word, the fifth and last section should be a direct dictionary definition of the word in {language}. You must put something for each section. if you can not find anything put N/A and a pipe to start the next field. Please search the web for any information you are unsure about to ensure accuracy."
+    prompt += "\nStrict Format: <word> | <hiragana>(NHK pitch accent) | <example 1> | <example 2> | <definition>\n"
+    prompt += "Critical Rules:\n"
+    prompt += "- Exactly 5 fields per word, separated by | symbol\n"
+    prompt += "- One word per line\n"
+    prompt += "- Use N/A for any unavailable information\n"
+    prompt += "- No deviations from this format allowed\n"
+    prompt += "- Ensure accuracy, especially for NHK pitch accent\n"
+    prompt += "Example (follow this format precisely):\n"
+    prompt += "食べ物 | たべもの(2) | 食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食用にするもの。また、飲み物に対して、噛んで食べるもの。しょくもつ。 \n"
 
-    prompt += "\n Example Format you have to follow when responding: 食べ物  | たべもの (2) | 食べ物が好きで��。 | この店の食べ物はとても美味しいです。 | 食物をかんで、のみこむ。\n\n"
+    # Reduce max_tokens to fit within the model's limit
+    max_tokens = 3000
+
     # Send prompt to OpenAI API
     response = client.completions.create(
         model="gpt-3.5-turbo-instruct",
         prompt=prompt,
         temperature=0,
-        max_tokens=3700,
+        max_tokens=max_tokens,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0,
