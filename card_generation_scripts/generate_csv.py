@@ -30,17 +30,18 @@ def generate_explanations(words):
     print('language:', language)    
 
     # Construct the prompt dynamically based on the number of words
-    prompt = f"Generate {language} explanations for these words, following the format EXACTLY:\n"
+    prompt = f"You are a {language} teacher. You will generate nautral sounding, easy to understand, Japanese {language} explanations for these words, following the format EXACTLY:\n"
     for i, word in enumerate(words, start=1):
         prompt += f"{i}. {word}\n"
 
-    prompt += "\nStrict Format: <word> | <hiragana>(NHK pitch accent) | <example 1> | <example 2> | <definition>\n"
+    prompt += "\nStrict Format: <word> | <hiragana>(NHK pitch accent) | <example sentance 1> | <example sentance 2> | <definition>\n"
     prompt += "Critical Rules:\n"
     prompt += "- Exactly 5 fields per word, separated by | symbol\n"
     prompt += "- One word per line\n"
     prompt += "- Use N/A for any unavailable information\n"
     prompt += "- No deviations from this format allowed\n"
     prompt += "- Ensure accuracy, especially for NHK pitch accent\n"
+    prompt += "- Ensure the example sentences are natural, used by real Japanese people, and easy to understand\n"
     prompt += "Example (follow this format precisely):\n"
     prompt += "食べ物 | たべもの(2) | 食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食用にするもの。また、飲み物に対して、噛んで食べるもの。しょくもつ。 \n"
 
