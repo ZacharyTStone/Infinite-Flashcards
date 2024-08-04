@@ -1,5 +1,4 @@
-# Endless Flashcards
-
+# Infinite Flashcards
 This project is a Python script that generates Japanese Anki flashcards from a word list using OpenAI. 
 
 The generated cards include word readings, pitch accent, example sentences, and definitions.
