@@ -30,39 +30,44 @@ def generate_explanations(words):
     print('language:', language)    
 
     # Construct the prompt dynamically based on the number of words
-    prompt = f"You are a {language} teacher. You will generate nautral sounding, easy to understand, Japanese {language} explanations for these words, following the format EXACTLY:\n"
+    system_message = f"You are a {language} teacher. You will generate natural sounding, easy to understand, Japanese {language} explanations for the given words, following the format EXACTLY."
+    
+    user_message = "Words to explain:\n"
     for i, word in enumerate(words, start=1):
-        prompt += f"{i}. {word}\n"
+        user_message += f"{i}. {word}\n"
 
-    prompt += "\nStrict Format: <word> | <hiragana>(NHK pitch accent) | <example sentance 1> | <example sentance 2> | <definition>\n"
-    prompt += "Critical Rules:\n"
-    prompt += "- Exactly 5 fields per word, separated by | symbol\n"
-    prompt += "- One word per line\n"
-    prompt += "- Use N/A for any unavailable information\n"
-    prompt += "- No deviations from this format allowed\n"
-    prompt += "- Ensure accuracy, especially for NHK pitch accent\n"
-    prompt += "- Ensure the example sentences are natural, used by real Japanese people, and easy to understand\n"
-    prompt += "Example (follow this format precisely):\n"
-    prompt += "食べ物 | たべもの(2) | 食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食用にするもの。また、飲み物に対して、噛んで食べるもの。しょくもつ。 \n"
-
-    # Reduce max_tokens to fit within the model's limit
-    max_tokens = 3000
+    user_message += "\nStrict Format: <word> | <hiragana>(NHK pitch accent) | <example sentance 1> | <example sentance 2> | <definition>\n"
+    user_message += "Critical Rules:\n"
+    user_message += "- Exactly 5 fields per word, separated by | symbol\n"
+    user_message += "- One word per line\n"
+    user_message += "- Use N/A for any unavailable information\n"
+    user_message += "- No deviations from this format allowed\n"
+    user_message += "- Ensure accuracy, especially for NHK pitch accent\n"
+    user_message += "- Ensure the example sentences are natural, used by real Japanese people, and easy to understand\n"
+    user_message += "Example (follow this format precisely):\n"
+    user_message += "食べ物 | たべもの(2) | 食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食用にするもの。また、飲み物に対して、噛んで食べるもの。しょくもつ。 \n"
 
     # Send prompt to OpenAI API
-    response = client.completions.create(
-        model="gpt-3.5-turbo-instruct",
-        prompt=prompt,
-        temperature=0.3, 
-        max_tokens=max_tokens,
+    response = client.chat.completions.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": system_message},
+            {"role": "user", "content": user_message}
+        ],
+        temperature=0.5,
+        max_tokens=3000,
         top_p=1,
-        frequency_penalty=0.1,  
+        frequency_penalty=0.3,
         presence_penalty=0,
     )
 
-    print('prompt:', prompt)
+    print('prompt:', user_message)
+
+    # Get the response content
+    response_content = response.choices[0].message.content
 
     # Split the response text by newline and filter out any empty lines
-    data = [line.strip() for line in response.choices[0].text.strip().split("\n") if line.strip()]
+    data = [line.strip() for line in response_content.strip().split("\n") if line.strip()]
     
     # Check if each line contains five fields separated by pipe symbol
     for i, line in enumerate(data):
