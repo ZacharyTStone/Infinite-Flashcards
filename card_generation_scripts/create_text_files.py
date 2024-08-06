@@ -1,15 +1,15 @@
 import os
 
 def create_blank_files():
-    base_path = os.path.dirname(__file__)  # 追加された行
-    files = [os.path.join(base_path, 'words.txt')]  # 変更された行
+    base_path = os.path.dirname(__file__)  
+    files = [os.path.join(base_path, 'words.txt')]  
 
     for file in files:
         with open(file, 'w') as f:
             pass
 
 def main():
-    base_path = os.path.dirname(__file__)  # 追加された行
+    base_path = os.path.dirname(__file__)  
     files_exist = all(os.path.isfile(os.path.join(base_path, 'words.txt')) for file in ['words.txt'])  # 変更された行
     
     if files_exist:

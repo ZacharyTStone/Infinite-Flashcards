@@ -4,7 +4,10 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 import requests
-
+import sys
+# Add the parent directory of the current file to sys.path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from utils import remove_duplicates
 # Load environment variables from .env file
 load_dotenv()
 
@@ -91,7 +94,7 @@ def read_words_from_file(file_path):
         print(f"File not found: {file_path}")
     except IOError:
         print(f"Error reading file: {file_path}")
-    return words
+    return remove_duplicates(words)
 
 def main():
     # Read words from text file

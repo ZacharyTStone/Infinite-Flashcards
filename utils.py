@@ -52,3 +52,6 @@ def import_deck(deck_path, name_of_text_file):
         clear_and_create_file('./files', "words")
     else:
         print("Failed to import deck.")
+
+def remove_duplicates(string_array):
+    return list(dict.fromkeys(string_array))
