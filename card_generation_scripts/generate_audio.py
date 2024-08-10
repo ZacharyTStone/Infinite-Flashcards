@@ -1,4 +1,7 @@
+import sys
 import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from variables import CSV_FILE_PATH_WITH_IMAGES, CSV_FILE_PATH_WITH_AUDIO
 import csv
 from gtts import gTTS
 
@@ -9,12 +12,14 @@ def generate_audio(text, filename, language="ja"):
     return audio_file
 
 def main():
-    # Specify the path for the CSV files
-    csv_file = "./files/Japanese_Word_Examples.csv"
-    updated_csv_file = "./files/Japanese_Word_Examples_With_Audio.csv"
+    # Check if the CSV file exists
+    input_file = CSV_FILE_PATH_WITH_IMAGES if os.path.exists(CSV_FILE_PATH_WITH_IMAGES) else CSV_FILE_PATH_WITH_AUDIO
+    if not os.path.exists(input_file):
+        print(f"Error: CSV file not found at {input_file}")
+        return
 
     # Read words from the CSV file
-    with open(csv_file, "r") as file:
+    with open(input_file, "r", encoding='utf-8') as file:
         reader = csv.reader(file)
         header = next(reader)  # Skip the header row
         words = [row for row in reader]
@@ -36,7 +41,7 @@ def main():
         row.append(f"[sound:{word}_definition.mp3]")
 
     # Write to a new CSV file
-    with open(updated_csv_file, "w", newline='') as file:
+    with open(CSV_FILE_PATH_WITH_AUDIO, "w", newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(header + ["Word_Audio", "Example_Sentence_1_Audio", "Dictionary_Definition_Audio"])
         writer.writerows(words)

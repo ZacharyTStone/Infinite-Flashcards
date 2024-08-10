@@ -1,5 +1,7 @@
 pandas
 openai
 genanki
-dotenv
+python-dotenv
 requests
+pyunsplash
+pyarrow
