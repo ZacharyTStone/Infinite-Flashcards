@@ -46,9 +46,9 @@ def generate_explanations(words):
     user_message += "- Use N/A for any unavailable information\n"
     user_message += "- No deviations from this format allowed\n"
     user_message += "- Ensure accuracy, especially for NHK pitch accent\n"
-    user_message += "- Ensure the example sentences are natural, used by real Japanese people, and easy to understand\n"
+    user_message += "- Ensure the example sentences are natural, used by real Japanese people, easy to understand, and give a good understanding of the word.\n"
     user_message += "Example (follow this format precisely):\n"
-    user_message += "食べ物 | たべもの(2) | 食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食用にするもの。また、飲み物に対して、噛んで食べるもの。しょくもつ。 \n"
+    user_message += "食べ物 | たべもの(2) | チェフだから食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食用にするもの。また、飲み物に対して、噛んで食べるもの。しょくもつ。 \n"
 
     # Send prompt to OpenAI API
     response = client.chat.completions.create(
