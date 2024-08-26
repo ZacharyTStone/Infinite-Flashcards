@@ -39,7 +39,7 @@ def generate_explanations(words):
     for i, word in enumerate(words, start=1):
         user_message += f"{i}. {word}\n"
 
-    user_message += "\nStrict Format: <word> | <hiragana>(NHK pitch accent) | <example sentance 1> | <example sentance 2> | <definition>\n"
+    user_message += "\nStrict Format: <word> | <hiragana>(NHK pitch accent) | <example sentance 1> | <example sentance 2> | <definition in English>\n"
     user_message += "Critical Rules:\n"
     user_message += "- Exactly 5 fields per word, separated by | symbol\n"
     user_message += "- One word per line\n"
@@ -48,7 +48,7 @@ def generate_explanations(words):
     user_message += "- Ensure accuracy, especially for NHK pitch accent\n"
     user_message += "- Ensure the example sentences are natural, used by real Japanese people, easy to understand, and give a good understanding of the word.\n"
     user_message += "Example (follow this format precisely):\n"
-    user_message += "食べ物 | たべもの(2) | チェフだから食べ物が好きです。 | この店の食べ物はとても美味しいです。 | 食用にするもの。また、飲み物に対して、噛んで食べるもの。しょくもつ。 \n"
+    user_message += "食べ物 | たべもの(2) | チェフだから食べ物が好きです。 | この店の食べ物はとても美味しいです。 | Food; any substance consumed to provide nutritional support for an organism. It is usually of plant or animal origin, and contains essential nutrients, such as carbohydrates, fats, proteins, vitamins, or minerals.\n"
 
     # Send prompt to OpenAI API
     response = client.chat.completions.create(

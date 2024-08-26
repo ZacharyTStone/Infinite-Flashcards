@@ -28,7 +28,7 @@ def main():
         # Generate audio files for word, example sentence, and definition
         word_audio_file = generate_audio(word, word)
         example_sentence_1_audio_file = generate_audio(example_sentence_1, f"{word}_example_1")
-        dictionary_definition_audio_file = generate_audio(dictionary_definition, f"{word}_definition")
+        dictionary_definition_audio_file = generate_audio(dictionary_definition, f"{word}_definition", language="en")
         
         # Add audio file references to the row
         row.append(f"[sound:{word}.mp3]")
