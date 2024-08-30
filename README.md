@@ -5,8 +5,6 @@ The generated cards include word readings, pitch accent, example sentences, and 
 
 This Python script significantly simplifies the process of creating new cards, allowing advanced learners to focus on studying rather than card creation.
 
-The cards are 100% in Japanese so this is suitable for advanced users who can learn in Japanese. I may add a hiragana only option in the future.
-
 ## Requirements
 
 - Python
